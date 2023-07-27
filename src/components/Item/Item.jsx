@@ -21,32 +21,16 @@ const Item = ({id, name, img, price, stock}) => {
                     </p>
                 </section>
                 <footer className='ItemFooter'>
-                    <button className='Option'>Ver mas</button>
+                    <Link to={`/item/${id}`} className='Option'>Ver mas</Link>
 
                 </footer>
 
-            </article>
-
-
-
-
-
-
-
-
+        </article>
 
 
     )
 
 
-
-
-
-
-
-
-
-
-
-
 }
+
+export default Item;

@@ -1,6 +1,8 @@
 import { useState, useEffect } from "react";
-import { getProducts } from '../../main.jsx'
-import ItemList from '../ItemList/ItemList.jsx'
+import { getProducts, getProductsByCategory } from '../../main'
+import ItemList from '../ItemList/ItemList'
+
+import { useParams } from "react-router-dom";
 
 
 
@@ -8,16 +10,20 @@ import ItemList from '../ItemList/ItemList.jsx'
 const ItemListContainer = ({greeting}) => {
     const [products, setProducts] = useState([])
 
+    const { categoryId } = useParams()
+
+
     useEffect(() => {
-        
-        getProducts()
+        const asyncFunc = categoryId ? getProductsByCategory : getProducts
+
+        asyncFunc(categoryId)
             .then(response => {
                 setProducts(response)
             })
             .catch(error => {
                 console.error(error)
             })
-    },  [])
+    },  [categoryId])
 
 
     return (
